@@ -3,6 +3,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchPokeData} from '../actions/index';
 
+/*
+--Dropdown Component--
+When the dropdown onChange value changes it sends an action to make two API calls
+1. To get general pokemon data
+2. To get species data, which is used to get the pokemons evolution tree
+*/
 class Dropdown extends Component{
   constructor(props){
     super(props);

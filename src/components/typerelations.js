@@ -1,6 +1,13 @@
 import React from 'react';
 import TypeRelation from './typerelation';
 
+/*
+--Type Relations Component--
+Uses the Pokemon Types and finds its weakness/resistance/immunity 
+to other pokemon types.
+
+Passes all relational element data to the TypeRelation component which renders the different elements with its relation label
+*/
 export default (props)=>{
   const weakness = {
     normal: ['fighting'],
@@ -86,6 +93,7 @@ export default (props)=>{
     fairy:"FRY"
   }
   function getTypes(data){
+    //Retrieves the element types of the pokemon and returns it in an array
     var pokeTypes = [];
     if(data.length<2){
       pokeTypes.push(data[0].type.name);
@@ -97,6 +105,8 @@ export default (props)=>{
   }
 
   function typeRelationElements(data, relation){
+    //Uses each pokeType in the types array and pushes the abbreviated element values from the relation(weakness/resistance/immunity) object to the elements array
+    //If an element is shared between two pokeTypes only one instance of the element is pushed to the array
     var types = getTypes(data);
     var elements = []
     types.forEach((type)=>{

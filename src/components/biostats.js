@@ -1,8 +1,10 @@
 import React from 'react';
 import BioStat from './biostat';
-
+/*--BioStats--
+Contains BioStat component that renders species, height, weight after values are converted into Imperial units
+*/
 export default (props)=>{
-  function convertHeight(meters){
+  function convertHeightToFeet(meters){
     const raw_height = meters*.1*3.28084;
     var feet = Math.floor(raw_height);
     const inches = Math.round(raw_height%1 * 12);
@@ -14,7 +16,7 @@ export default (props)=>{
     }
   }
 
-  function convertWeight(kg){
+  function convertWeightToLbs(kg){
     const raw_weight = (kg*.1*2.20462).toFixed(1);
     return `${raw_weight} lbs`;
   }
@@ -28,8 +30,8 @@ export default (props)=>{
       </div>
       <div className="physical-stats">
         <BioStat main={props.bioData.genera[0].genus.toUpperCase()} sub="SPECIES"/>
-        <BioStat main={convertHeight(props.generalData.height)} sub="HEIGHT"/>
-        <BioStat main={convertWeight(props.generalData.weight)} sub="WEIGHT"/>
+        <BioStat main={convertHeightToFeet(props.generalData.height)} sub="HEIGHT"/>
+        <BioStat main={convertWeightToLbs(props.generalData.weight)} sub="WEIGHT"/>
       </div>
       <div className="fun-fact">
         {props.bioData.flavor_text_entries[9].flavor_text}
