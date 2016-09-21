@@ -20,6 +20,7 @@ class Dropdown extends Component{
   }
 
   dropdownOptions(){
+  	//Returns an array of pokemon options for the dropdown
 	  const pokemonList=
 		  [
 			  "Bulbasaur",
@@ -753,6 +754,7 @@ class Dropdown extends Component{
   }
 
   onSelectChange(e){
+  	//When the dropdown value changes, the api call action is triggered
   	this.setState({selected:e.target.value});
     this.props.fetchPokeData(e.target.value);
   }

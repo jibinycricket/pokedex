@@ -7,6 +7,7 @@ export default (props)=>{
   Props: Elements, Label
   */
   function renderRelation(elements){
+    //Renders each individual element
     elements.forEach((element)=>{
       return (<div className="element">{element}</div>)
     });
