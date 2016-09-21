@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import Bio from '../components/biostats';
 import TypeRelations from '../components/typerelations';
+import Chart from '../components/statchart';
+
 class PokemonContainer extends Component{
   constructor(props){
     super(props);
@@ -32,6 +34,7 @@ class PokemonContainer extends Component{
             bioData={this.state.bioData}
           />
           <TypeRelations generalData={this.state.generalData}/>
+          <Chart statsData={this.state.generalData.stats.reverse()}/>
         </div>
       );
     }

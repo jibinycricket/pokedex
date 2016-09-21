@@ -112,7 +112,7 @@ export default (props)=>{
     types.forEach((type)=>{
       relation[type].forEach((element, index)=>{
         const elemAbrev = abbreviation[element];
-        if(elements.indexOf(elemAbrev)==-1 && elements.length<3){
+        if(elements.indexOf(elemAbrev)===-1 && elements.length<3){
           elements.push(elemAbrev);
         }
       });
