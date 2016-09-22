@@ -18,15 +18,25 @@ export default (props)=>{
 
   function convertWeightToLbs(kg){
     const raw_weight = (kg*.1*2.20462).toFixed(1);
+    console.log(props.generalData);
     return `${raw_weight} lbs`;
   }
 
-  console.log(props.generalData);
+  function addZerosToId(number){
+    if(number.toString().length === 1){
+      return "00"+number;
+    }else if(number.toString().length === 2){
+      return "0"+number;
+    }else{
+      return number;
+    }
+  }
+
   return(
     <div className="bio">
       <div className="poke-img">
-        <img src="" alt=""/>
-        <span className="poke-num">{props.generalData.id}</span>
+        <img src={require(`../images/pokemon_sprites/${props.generalData.id}.png`)} alt={`${props.generalData.name} sprite`}/>
+        <div className="poke-num">{addZerosToId(props.generalData.id)}</div>
       </div>
       <div className="physical-stats">
         <BioStat main={props.bioData.genera[0].genus.toUpperCase()} sub="SPECIES"/>

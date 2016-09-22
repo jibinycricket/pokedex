@@ -1,3 +1,10 @@
-.chart-container{
-  width: 200px;
-}
+body {
+  background-color: #5498BB; }
+  body .App {
+    background-color: white; }
+    body .App .chart-container {
+      width: 100px; }
+      body .App .chart-container h1 {
+        color: green; }
+
+/*# sourceMappingURL=App.css.map */
