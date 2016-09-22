@@ -18,7 +18,6 @@ export default (props)=>{
 
   function convertWeightToLbs(kg){
     const raw_weight = (kg*.1*2.20462).toFixed(1);
-    console.log(props.generalData);
     return `${raw_weight} lbs`;
   }
 

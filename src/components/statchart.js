@@ -53,7 +53,6 @@ export default class StatChart extends Component{
   render(){
     return(
       <div className="chart-container">
-        <h1>Blue</h1>
         <canvas id="StatChart" width="400" height="400"></canvas>
       </div>
     );
