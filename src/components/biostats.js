@@ -1,5 +1,6 @@
 import React from 'react';
 import BioStat from './biostat';
+import PokeImage from './pokeimage';
 /*--BioStats--
 Contains BioStat component that renders species, height, weight after values are converted into Imperial units
 */
@@ -34,7 +35,7 @@ export default (props)=>{
   return(
     <div className="bio">
       <div className="poke-img">
-        <img src={require(`../images/pokemon_sprites/${props.generalData.id}.png`)} alt={`${props.generalData.name} sprite`}/>
+        <PokeImage idNum={props.generalData.id} name={props.generalData.name}/>
         <div className="poke-num">{addZerosToId(props.generalData.id)}</div>
       </div>
       <div className="physical-stats">
