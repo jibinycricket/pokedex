@@ -3,50 +3,87 @@ import PokeImage from './pokeimage';
 
 export default (props)=>{
   function verifyEvolutionCondition(evolution_details){
-    if(evolution_details.min_level!==null){
-      return evolution_details.min_level;
-    }
-    if(evolution_details.min_happiness!==null){
-      return "happiness";
-    }
-    if(evolution_details.trigger.name === "trade"){
-      return "trade";
-    }
-    if(evolution_details.min_beauty!==null){
-      return "beauty";
-    }
+
+    let reqArray = [];
     if(evolution_details.item!==null){
-      return evolution_details.item.name;
+      reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.item.name}.png`)} key={evolution_details.item.name} title={`trade while holding ${evolution_details.item.name}`} alt={`${evolution_details.item.name} sprite`}/>);
     }
-  }
-  function sortEvoChainData(object){
-    var array = [];
-    console.log(object);
-    if(object.evolves_to.length>0){
-      array.push(object.species.url.split('/')[6]);
-      if(object.evolution_details.length>0){
-        var condition = verifyEvolutionCondition(object.evolution_details[0])
-        array.push(condition);
+    //By Level
+    if(evolution_details.min_level!==null){
+      reqArray.push(`Lvl: ${evolution_details.min_level}`);
+    }
+    //By Happiness
+    if(evolution_details.min_happiness!==null){
+      reqArray.push(<img src={require(`../images/req_sprites/happiness.png`)} key="happiness" title="Evolves on level up after max happiness" alt={`heart sprite`}/>);
+    }
+    //By Time of Day
+    if(evolution_details.time_of_day!==null){
+      if(evolution_details.time_of_day==='night'){
+        reqArray.push(<img src={require(`../images/req_sprites/night.png`)} key="night" title="Evolves on level up at night" alt="moon sprite"/>);
+      }else if(evolution_details.time_of_day==='day'){
+        reqArray.push(<img src={require(`../images/req_sprites/day.png`)} key="day" title="Evolves on level up during the day" alt="sun sprite"/>);
+      }
+    }
+    //By Trade
+    if(evolution_details.trigger.name === "trade"){
+      if(evolution_details.held_item!==null){//By Trade with Item
+        var heldItem = evolution_details.held_item.name;
+        reqArray.push(<img src={require(`../images/req_sprites/${heldItem}.png`)} key={heldItem} title={`trade while holding ${heldItem}`} alt={`${heldItem} sprite`}/>);
       }else{
-        array.push(0);
+        reqArray.push(<img src={require(`../images/req_sprites/trade.png`)} key="trade" title="Evolves when traded" alt="trade sprite"/>);
       }
-      return array.concat(sortEvoChainData(object.evolves_to[0]));
-    }else{
-      array.push(object.species.url.split('/')[6]);
-      if(object.evolution_details[0]!=null){
-        condition = verifyEvolutionCondition(object.evolution_details[0])
-        array.push(condition);
-      }
-      return array;
     }
+    //By Max Beauty
+    if(evolution_details.min_beauty!==null){
+      reqArray.push("max beauty");
+    }
+
+    if(evolution_details.location){
+      if(evolution_details.location.name==="eterna-forest"){
+        reqArray.push("Lvl by Moss Rock");
+      }else{
+        reqArray.push("Lvl by Ice Rock");
+      }
+    }
+
+    if(evolution_details.known_move_type){
+      reqArray.push("Lvl with Fairy Move");
+    }
+
+    return reqArray;
   }
 
+
+function sortEvoChainData(pokeObject){
+  console.log(pokeObject);
+  let pokeArray = [];
+  if(pokeObject.evolves_to.length>0){
+    pokeArray.push(pokeObject.species.url.split('/')[6]);
+    if(pokeObject.evolution_details.length>0){
+      var condition = verifyEvolutionCondition(pokeObject.evolution_details[0])
+      pokeArray.push(condition);
+    }else{
+      pokeArray.push(0);
+    }
+    for(let i = 0;i<pokeObject.evolves_to.length;i++){
+      pokeArray=pokeArray.concat(sortEvoChainData(pokeObject.evolves_to[i]));
+    }
+  }else{
+    pokeArray.push(pokeObject.species.url.split('/')[6]);
+    if(pokeObject.evolution_details[0]!=null){
+      condition = verifyEvolutionCondition(pokeObject.evolution_details[0])
+      pokeArray.push(condition);
+    }
+  }
+  return pokeArray;
+}
+
   function renderEvoChain(array){
-    var imageArray=[];
+    let imageArray=[];
+    //Every Even is a pokemon, every odd is how it evolves
     for(let i=0;i<array.length;i+=2){
       if(i!==0){
-        console.log(i);
-        imageArray.push(<div key={`evochain${i}evoreq`}>Lvl:{array[i+1]}</div>)
+        imageArray.push(<div key={`evochain${i}evoreq`}>{array[i+1]}</div>)
       }
       imageArray.push(<PokeImage key={`evochain${i}sprite`} idNum={array[i]}/>);
     }

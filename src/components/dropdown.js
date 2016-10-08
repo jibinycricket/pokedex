@@ -761,7 +761,7 @@ class Dropdown extends Component{
 
   render(){
   	return(
-			<select name="" onChange={this.onSelectChange}>
+			<select id="dropdown-menu" name="" onChange={this.onSelectChange}>
 				{this.dropdownOptions()}
 			</select>
   	)
