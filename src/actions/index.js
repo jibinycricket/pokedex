@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_POKEDATA = 'FETCH_POKEDATA';
+export const START_SPINNER = 'START_SPINNER';
 
 export function fetchPokeData(number){
   function getPokeData(number){
@@ -22,5 +23,12 @@ export function fetchPokeData(number){
   return{
     type: FETCH_POKEDATA,
     payload: request
+  }
+}
+
+export function enableSpinner(){
+  return{
+    type: START_SPINNER,
+    payload: true
   }
 }

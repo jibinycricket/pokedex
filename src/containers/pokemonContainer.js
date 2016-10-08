@@ -25,7 +25,7 @@ class PokemonContainer extends Component{
   }
   renderBio(){
     if(this.state.foundData===false){
-      return <div>None</div>
+      return <div><img src={require(`../images/pokeballspinner.png`)} width="150px"/></div>
     }else{
       return(
         <div>
