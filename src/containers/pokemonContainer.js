@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {changeSpinnerState} from '../actions/index';
 import Bio from '../components/biostats';
 import TypeRelations from '../components/typerelations';
 import Chart from '../components/statchart';
 import EvoChain from '../components/evochain';
+
 class PokemonContainer extends Component{
   constructor(props){
     super(props);
@@ -22,13 +25,18 @@ class PokemonContainer extends Component{
       bioData: nextProps.pokeData[0][1][0].data,
       evoData: nextProps.pokeData[0][1][1].data
     });
+    //If the next set of data is loaded, stop spinner
+    if(this.state.generalData.name!=nextProps.pokeData[0][0].data.name){
+      this.props.changeSpinnerState(false);
+    }
   }
   renderBio(){
-    if(this.state.foundData===false){
-      return <div><img src={require(`../images/pokeballspinner.png`)} width="150px"/></div>
+    if(this.props.spinner===true){
+      return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px"/>
     }else{
       return(
         <div>
+          <div></div>
           <Bio 
             generalData={this.state.generalData} 
             bioData={this.state.bioData}
@@ -50,7 +58,11 @@ class PokemonContainer extends Component{
 }
 
 function mapStateToProps(state){
-  return{pokeData:state.pokeData}
+  return{spinner:state.spinner, pokeData:state.pokeData}
 }
 
-export default connect(mapStateToProps)(PokemonContainer);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({changeSpinnerState}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonContainer);

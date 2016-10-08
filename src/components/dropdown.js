@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchPokeData} from '../actions/index';
-
+import {changeSpinnerState} from '../actions/index';
 /*
 --Dropdown Component--
 When the dropdown onChange value changes it sends an action to make two API calls
@@ -755,8 +755,9 @@ class Dropdown extends Component{
 
   onSelectChange(e){
   	//When the dropdown value changes, the api call action is triggered
+    this.props.actions.changeSpinnerState(true);
   	this.setState({selected:e.target.value});
-    this.props.fetchPokeData(e.target.value);
+    this.props.actions.fetchPokeData(e.target.value);
   }
 
   render(){
@@ -769,7 +770,12 @@ class Dropdown extends Component{
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchPokeData}, dispatch);
+  return {
+  	actions:{
+	  	fetchPokeData: bindActionCreators(fetchPokeData, dispatch),
+	  	changeSpinnerState: bindActionCreators(changeSpinnerState, dispatch)
+	  }
+  }
 }
 
 export default connect(null,mapDispatchToProps)(Dropdown);

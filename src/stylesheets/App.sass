@@ -1,5 +1,10 @@
 $background-color: #5498BB
 
+@keyframes spin
+  from 
+    transform: rotate(0deg)
+  to 
+    transform: rotate(360deg)
 
 body
   background-color: $background-color
@@ -9,6 +14,11 @@ body
       width: 100px
       h1
         color: green
+
+  #pokemon-spinner
+    animation-name: spin
+    animation-duration: 3s
+    animation-iteration-count: infinite
   #dropdown-menu
     min-width: 150px
     min-height: 50px

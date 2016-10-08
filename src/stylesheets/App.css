@@ -1,3 +1,8 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 body {
   background-color: #5498BB; }
   body .App {
@@ -6,6 +11,10 @@ body {
       width: 100px; }
       body .App .chart-container h1 {
         color: green; }
+  body #pokemon-spinner {
+    animation-name: spin;
+    animation-duration: 3s;
+    animation-iteration-count: infinite; }
   body #dropdown-menu {
     min-width: 150px;
     min-height: 50px;

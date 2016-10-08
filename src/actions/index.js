@@ -26,9 +26,9 @@ export function fetchPokeData(number){
   }
 }
 
-export function enableSpinner(){
+export function changeSpinnerState(spin){
   return{
     type: START_SPINNER,
-    payload: true
+    payload: spin
   }
 }
