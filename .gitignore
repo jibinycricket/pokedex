@@ -58,7 +58,4 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-./src/images
-images
-*.png
-src/images
+
