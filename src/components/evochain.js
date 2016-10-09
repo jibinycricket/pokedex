@@ -3,11 +3,13 @@ import PokeImage from './pokeimage';
 
 export default (props)=>{
   function verifyEvolutionCondition(evolution_details){
-
+    console.log(evolution_details);
     let reqArray = [];
     if(evolution_details.item!==null){
       reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.item.name}.png`)} key={evolution_details.item.name} title={`trade while holding ${evolution_details.item.name}`} alt={`${evolution_details.item.name} sprite`}/>);
     }
+
+
     //By Level
     if(evolution_details.min_level!==null){
       reqArray.push(`Lvl: ${evolution_details.min_level}`);
@@ -32,7 +34,10 @@ export default (props)=>{
       }else{
         reqArray.push(<img src={require(`../images/req_sprites/trade.png`)} key="trade" title="Evolves when traded" alt="trade sprite"/>);
       }
+    }else if(evolution_details.held_item!==null){
+      reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.held_item.name}.png`)} key={evolution_details.held_item.name} title={`level while holding ${evolution_details.held_item.name}`} alt={`${evolution_details.held_item.name} sprite`}/>);
     }
+    
     //By Max Beauty
     if(evolution_details.min_beauty!==null){
       reqArray.push("max beauty");
@@ -49,13 +54,11 @@ export default (props)=>{
     if(evolution_details.known_move_type){
       reqArray.push("Lvl with Fairy Move");
     }
-
     return reqArray;
   }
 
 
 function sortEvoChainData(pokeObject){
-  console.log(pokeObject);
   let pokeArray = [];
   if(pokeObject.evolves_to.length>0){
     pokeArray.push(pokeObject.species.url.split('/')[6]);
