@@ -32,7 +32,11 @@ class PokemonContainer extends Component{
   }
   renderBio(){
     if(this.props.spinner===true){
-      return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px"/>
+      if(this.state.foundData===true){
+        return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px"/>
+      }else{
+        return <img src={require(`../images/pokeballspinner.png`)} width="150px"/>
+      }
     }else{
       return(
         <div>
