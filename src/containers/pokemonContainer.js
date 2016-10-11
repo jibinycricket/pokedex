@@ -17,17 +17,47 @@ class PokemonContainer extends Component{
       evoData: {}
     };
     this.renderBio = this.renderBio.bind(this);
+    this.mainColor = this.mainColor.bind(this);
   }
   componentWillReceiveProps(nextProps){
     this.setState({
       foundData: true,
       generalData:nextProps.pokeData[0][0].data,
       bioData: nextProps.pokeData[0][1][0].data,
-      evoData: nextProps.pokeData[0][1][1].data
+      evoData: nextProps.pokeData[0][1][1].data,
+      typeColor: this.mainColor(nextProps.pokeData[0][0].data.types)
     });
     //If the next set of data is loaded, stop spinner
     if(this.state.generalData.name!=nextProps.pokeData[0][0].data.name){
       this.props.changeSpinnerState(false);
+    }
+  }
+  mainColor(types){
+    const colors = {
+      normal: '#BDC3C7',
+      fighting: '#A95747',
+      flying: '#78A3FF',
+      poison:'#AA5DA1',
+      ground:'#ECCA57',
+      rock:'#CEBD72',
+      bug:'#C2D21F',
+      ghost:'#7874D4',
+      steel:'#C4C2DB',
+      fire:'#FA5645',
+      water:'#56AEFF',
+      grass:'#8DD851',
+      electric:'#FDE53E',
+      psychic:'#F662B1',
+      ice:'#96F1FF',
+      dragon:'#8975FF',
+      dark:'#8D6955',
+      fairy:'#F8ADFF'
+    }
+
+    if(types.length<2){
+      return colors[types[0].type.name];
+    }else{
+      return colors[types[1].type.name];
     }
   }
   renderBio(){
@@ -40,13 +70,14 @@ class PokemonContainer extends Component{
     }else{
       return(
         <div>
-          <div></div>
           <Bio 
             generalData={this.state.generalData} 
             bioData={this.state.bioData}
           />
-          <TypeRelations generalData={this.state.generalData}/>
-          <Chart statsData={this.state.generalData.stats.reverse()}/>
+          <div className="stats-data">
+            <TypeRelations typecolor={this.state.typeColor} generalData={this.state.generalData}/>
+            <Chart typecolor={this.state.typeColor} statsData={this.state.generalData.stats.reverse()}/>
+          </div>
           <EvoChain evoData={this.state.evoData}/>
         </div>
       );

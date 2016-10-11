@@ -10,7 +10,7 @@ export default class StatChart extends Component{
     this.props.statsData.forEach((stat)=>{
       statDataSet.push(stat.base_stat); 
     });
-    const mainColor = '#E44A4C';
+    const mainColor = this.props.typecolor;
     const hoverColor = '#ffddee';
     var ctx = document.getElementById("StatChart");
     Chart.defaults.global.legend.display = false;
@@ -52,7 +52,7 @@ export default class StatChart extends Component{
   }
   render(){
     return(
-      <div className="chart-container">
+      <div className="chart-column">
         <canvas id="StatChart" width="400" height="400"></canvas>
       </div>
     );

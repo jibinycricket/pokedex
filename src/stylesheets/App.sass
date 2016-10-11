@@ -5,21 +5,67 @@ $background-color: #5498BB
     transform: rotate(0deg)
   to 
     transform: rotate(360deg)
-
+#pokemon-spinner
+  animation-name: spin
+  animation-duration: 3s
+  animation-iteration-count: infinite
+#dropdown-menu
+  min-width: 150px
+  min-height: 50px
+  text-align: center
 body
   background-color: $background-color
   .App
+    width: 80%
+    padding: 20px
+    margin: 0 auto
     background-color: white
-    .chart-container
-      width: 100px
-      h1
-        color: green
+    .bio
+      .img-column
+        text-align: center
+        box-sizing: border-box
+        width: 30%
+        display: inline-block
+      .text-column
+        width: 70%
+        box-sizing: border-box
+        display: inline-block
+        .physical-stats
+          display: flex
+          text-align: center
+          .physical-stat
+            flex: 1
+            .main
+              font-weight: 600
+              font-size: 18px
+            .sub
+              font-weight: 400
+              font-size: 12px
+            &:nth-child(2)
+              border-right: 1px solid black
+              border-left: 1px solid black
+        .fun-fact
+          margin-top: 20px
+    .main-type
+      border: 1px solid red
+      width: 400px
+      display: inline-block
+      border-radius: 20px 0px 0px 20px
+    .stats-data
+      margin: 0 auto
+      .types-column
+        display: inline-block
+        width: 60%
+        text-align: right
+        box-sizing: border-box
+        border: 1px solid red
+        vertical-align: top
+      .chart-column
+        width: 40%
+        display: inline-block
+        box-sizing: border-box
+        border: 1px solid red
+        h1
+          color: green
 
-  #pokemon-spinner
-    animation-name: spin
-    animation-duration: 3s
-    animation-iteration-count: infinite
-  #dropdown-menu
-    min-width: 150px
-    min-height: 50px
-    text-align: center
+  

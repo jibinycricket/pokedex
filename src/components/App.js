@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from './dropdown';
+import Dropdown from '../containers/dropdown';
 import PokemonContainer from '../containers/pokemonContainer';
 import '../stylesheets/App.css';
 

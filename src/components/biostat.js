@@ -2,9 +2,9 @@ import React from 'react';
 
 export default (props)=>{
   return(
-    <div>
-      <span className="main">{props.main}</span>
-      <span className="sub">{props.sub}</span>
+    <div className="physical-stat">
+      <div className="main">{props.main}</div>
+      <div className="sub">{props.sub}</div>
     </div>
   );
 }

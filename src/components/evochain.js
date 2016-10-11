@@ -3,7 +3,6 @@ import PokeImage from './pokeimage';
 
 export default (props)=>{
   function verifyEvolutionCondition(evolution_details){
-    console.log(evolution_details);
     let reqArray = [];
     if(evolution_details.item!==null){
       reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.item.name}.png`)} key={evolution_details.item.name} title={`trade while holding ${evolution_details.item.name}`} alt={`${evolution_details.item.name} sprite`}/>);

@@ -122,16 +122,20 @@ export default (props)=>{
   }
 
   function renderMainType(data){
+    console.log(props);
+    var style = {
+      backgroundColor: props.typecolor
+    };
     if(data.length<2){
       return (
-        <div className="main-type">
+        <div style={style} className="main-type">
           <div className="type-name">{data[0].type.name.toUpperCase()}</div>
           <div className="type-label">TYPE</div>
         </div>
       );
     }else{
       return (
-        <div className="main-type">
+        <div style={style} className="main-type">
           <div className="type-name">{`${data[0].type.name.toUpperCase()}/${data[1].type.name.toUpperCase()}`}</div>
           <div className="type-label">TYPE</div>
         </div>
@@ -140,10 +144,8 @@ export default (props)=>{
   }
 
   return(
-    <div>
-      <div>
-        {renderMainType(props.generalData.types)}
-      </div>
+    <div className="types-column">
+      {renderMainType(props.generalData.types)}
       <TypeRelation elements={typeRelationElements(props.generalData.types, weakness)} label="WEAKNESS"/>
       <TypeRelation elements={typeRelationElements(props.generalData.types, resistance)} label="RESISTANCE"/>
       <TypeRelation elements={typeRelationElements(props.generalData.types, immunity)} label="IMMUNITY"/>

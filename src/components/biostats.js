@@ -34,17 +34,19 @@ export default (props)=>{
 
   return(
     <div className="bio">
-      <div className="poke-img">
+      <div className="img-column">
         <PokeImage idNum={props.generalData.id} name={props.generalData.name}/>
         <div className="poke-num">{addZerosToId(props.generalData.id)}</div>
       </div>
-      <div className="physical-stats">
-        <BioStat main={props.bioData.genera[0].genus.toUpperCase()} sub="SPECIES"/>
-        <BioStat main={convertHeightToFeet(props.generalData.height)} sub="HEIGHT"/>
-        <BioStat main={convertWeightToLbs(props.generalData.weight)} sub="WEIGHT"/>
-      </div>
-      <div className="fun-fact">
-        {props.bioData.flavor_text_entries[9].flavor_text}
+      <div className="text-column">
+        <div className="physical-stats">
+          <BioStat main={props.bioData.genera[0].genus.toUpperCase()} sub="SPECIES"/>
+          <BioStat main={convertHeightToFeet(props.generalData.height)} sub="HEIGHT"/>
+          <BioStat main={convertWeightToLbs(props.generalData.weight)} sub="WEIGHT"/>
+        </div>
+        <div className="fun-fact">
+          {props.bioData.flavor_text_entries[9].flavor_text}
+        </div>
       </div>
     </div>
   );
