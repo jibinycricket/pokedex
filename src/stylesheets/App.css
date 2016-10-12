@@ -20,7 +20,6 @@ body {
     color: #5D686B;
     max-width: 600px;
     min-width: 480px;
-    padding: 20px;
     margin: 0 auto;
     background-color: white; }
     body .App .pokemon-name {
