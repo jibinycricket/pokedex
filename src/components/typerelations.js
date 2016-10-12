@@ -122,7 +122,6 @@ export default (props)=>{
   }
 
   function renderMainType(data){
-    console.log(props);
     var style = {
       backgroundColor: props.typecolor
     };

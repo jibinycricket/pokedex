@@ -10,8 +10,10 @@ export default class StatChart extends Component{
     this.props.statsData.forEach((stat)=>{
       statDataSet.push(stat.base_stat); 
     });
+
     const mainColor = this.props.typecolor;
     const hoverColor = '#ffddee';
+
     var ctx = document.getElementById("StatChart");
     Chart.defaults.global.legend.display = false;
     var myChart = new Chart(ctx, {
@@ -43,7 +45,10 @@ export default class StatChart extends Component{
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        maxTicksLimit:5,
+                        max:200,
+                        min: 0
                     }
                 }]
             }
@@ -51,8 +56,11 @@ export default class StatChart extends Component{
     });
   }
   render(){
+    var style = {
+        borderColor: this.props.typecolor
+    }
     return(
-      <div className="chart-column">
+      <div style={style} className="chart-column">
         <canvas id="StatChart" width="400" height="400"></canvas>
       </div>
     );

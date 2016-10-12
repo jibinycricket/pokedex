@@ -2,6 +2,10 @@ import React from 'react';
 import PokeImage from './pokeimage';
 
 export default (props)=>{
+  var style = {
+    color:props.typecolor
+  };
+
   function verifyEvolutionCondition(evolution_details){
     let reqArray = [];
     if(evolution_details.item!==null){
@@ -11,7 +15,12 @@ export default (props)=>{
 
     //By Level
     if(evolution_details.min_level!==null){
-      reqArray.push(`Lvl: ${evolution_details.min_level}`);
+      reqArray.push(
+        <div className="evolve-level" key={`evolvesat${evolution_details.min_level}`} style={style}>
+          <span className="lvl-label">LVL</span>
+          <span className="evolved-label">{evolution_details.min_level}</span>
+        </div>
+      );
     }
     //By Happiness
     if(evolution_details.min_happiness!==null){
@@ -85,7 +94,7 @@ function sortEvoChainData(pokeObject){
     //Every Even is a pokemon, every odd is how it evolves
     for(let i=0;i<array.length;i+=2){
       if(i!==0){
-        imageArray.push(<div key={`evochain${i}evoreq`}>{array[i+1]}</div>)
+        imageArray.push(<div className="poke-req" key={`evochain${i}evoreq`}>{array[i+1]}</div>)
       }
       imageArray.push(<PokeImage key={`evochain${i}sprite`} idNum={array[i]}/>);
     }
@@ -93,5 +102,5 @@ function sortEvoChainData(pokeObject){
   }
   var evoArray = sortEvoChainData(props.evoData.chain);
 
-  return <div>{renderEvoChain(evoArray)}</div>
+  return <div className="evo-chain">{renderEvoChain(evoArray)}</div>
 }

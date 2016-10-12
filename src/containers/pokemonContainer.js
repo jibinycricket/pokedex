@@ -68,8 +68,12 @@ class PokemonContainer extends Component{
         return <img src={require(`../images/pokeballspinner.png`)} width="150px"/>
       }
     }else{
+      var style={
+        backgroundColor:this.state.typeColor
+      }
       return(
         <div>
+          <div style={style} className="pokemon-name">{(this.state.generalData.name).toUpperCase()}</div>
           <Bio 
             generalData={this.state.generalData} 
             bioData={this.state.bioData}
@@ -78,7 +82,7 @@ class PokemonContainer extends Component{
             <TypeRelations typecolor={this.state.typeColor} generalData={this.state.generalData}/>
             <Chart typecolor={this.state.typeColor} statsData={this.state.generalData.stats.reverse()}/>
           </div>
-          <EvoChain evoData={this.state.evoData}/>
+          <EvoChain typecolor={this.state.typeColor} evoData={this.state.evoData}/>
         </div>
       );
     }
