@@ -93,24 +93,34 @@ body {
         box-sizing: border-box;
         border: 3px solid;
         border-right: 0px; }
-    body .App .evo-chain {
+    body .App .evo-chain-container .evo-chain-section-title {
+      margin: 0 auto;
       text-align: center;
-      margin-top: 25px; }
-      body .App .evo-chain .poke-img {
+      width: 80%;
+      font-size: 16px;
+      position: relative;
+      top: 20px;
+      padding: 10px 0px; }
+    body .App .evo-chain-container .evo-chain-thin-line {
+      height: 2px; }
+    body .App .evo-chain-container .evo-chain {
+      text-align: center;
+      margin-top: 30px; }
+      body .App .evo-chain-container .evo-chain .poke-img {
         display: inline-block; }
-      body .App .evo-chain .poke-req {
+      body .App .evo-chain-container .evo-chain .poke-req {
         display: inline-block;
         vertical-align: top; }
-        body .App .evo-chain .poke-req .evolve-level {
+        body .App .evo-chain-container .evo-chain .poke-req .evolve-level {
           font-weight: 800;
           padding-top: 40px; }
-          body .App .evo-chain .poke-req .evolve-level .lvl-label {
+          body .App .evo-chain-container .evo-chain .poke-req .evolve-level .lvl-label {
             font-size: 10px; }
-          body .App .evo-chain .poke-req .evolve-level .evolved-label {
+          body .App .evo-chain-container .evo-chain .poke-req .evolve-level .evolved-label {
             font-size: 16px; }
-        body .App .evo-chain .poke-req .req-sprite {
+        body .App .evo-chain-container .evo-chain .poke-req .req-sprite {
           padding-top: 40px; }
-        body .App .evo-chain .poke-req .req-s-sprite {
+        body .App .evo-chain-container .evo-chain .poke-req .req-s-sprite {
           padding-top: 10px; }
 
 /*# sourceMappingURL=App.css.map */

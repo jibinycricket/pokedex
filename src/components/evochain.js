@@ -2,9 +2,14 @@ import React from 'react';
 import PokeImage from './pokeimage';
 
 export default (props)=>{
-  var style = {
+  var fontstyle = {
     color:props.typecolor
   };
+
+  var bgstyle = {
+    backgroundColor:props.typecolor,
+    color: "white"
+  }
 
   function verifyEvolutionCondition(evolution_details){
     let reqArray = [];
@@ -30,7 +35,7 @@ export default (props)=>{
         <div 
           className="evolve-level" 
           key={`evolvesat${evolution_details.min_level}`} 
-          style={style}
+          style={fontstyle}
         >
           <span className="lvl-label">LVL</span>
           <span className="evolved-label">{evolution_details.min_level}</span>
@@ -117,5 +122,10 @@ function sortEvoChainData(pokeObject){
   }
   var evoArray = sortEvoChainData(props.evoData.chain);
 
-  return <div className="evo-chain">{renderEvoChain(evoArray)}</div>
+  return(
+    <div className="evo-chain-container">
+      <div style={bgstyle} className="evo-chain-section-title">EVOLUTION</div>
+      <div style={bgstyle} className="evo-chain-thin-line"></div>
+      <div className="evo-chain">{renderEvoChain(evoArray)}</div>
+    </div>);
 }
