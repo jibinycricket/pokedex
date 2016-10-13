@@ -4,6 +4,7 @@ export default function(state=true, action){
   switch(action.type){
     case START_SPINNER:
       return action.payload;
+    default:
+      return state;
   }
-  return state;
 }

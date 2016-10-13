@@ -8,59 +8,74 @@ export default (props)=>{
 
   function verifyEvolutionCondition(evolution_details){
     let reqArray = [];
+    console.log(evolution_details);
     if(evolution_details.item!==null){
-      reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.item.name}.png`)} key={evolution_details.item.name} title={`trade while holding ${evolution_details.item.name}`} alt={`${evolution_details.item.name} sprite`}/>);
+      if(evolution_details.trigger.name === "use-item"){
+        reqArray.push(
+          <div className="req-sprite" key={evolution_details.item.name}>
+            <img 
+                src={require(`../images/req_sprites/${evolution_details.item.name}.png`)}
+                title={`Use ${evolution_details.item.name}`} 
+                alt={`${evolution_details.item.name} sprite`}
+            />
+          </div>
+        )
+      }
     }
 
 
     //By Level
     if(evolution_details.min_level!==null){
       reqArray.push(
-        <div className="evolve-level" key={`evolvesat${evolution_details.min_level}`} style={style}>
+        <div 
+          className="evolve-level" 
+          key={`evolvesat${evolution_details.min_level}`} 
+          style={style}
+        >
           <span className="lvl-label">LVL</span>
           <span className="evolved-label">{evolution_details.min_level}</span>
         </div>
       );
     }
-    //By Happiness
-    if(evolution_details.min_happiness!==null){
-      reqArray.push(<img src={require(`../images/req_sprites/happiness.png`)} key="happiness" title="Evolves on level up after max happiness" alt={`heart sprite`}/>);
-    }
+
     //By Time of Day
     if(evolution_details.time_of_day!==null){
       if(evolution_details.time_of_day==='night'){
-        reqArray.push(<img src={require(`../images/req_sprites/night.png`)} key="night" title="Evolves on level up at night" alt="moon sprite"/>);
+        reqArray.push(<div className="req-sprite" key="night"><img src={require(`../images/req_sprites/night.png`)} title="Evolves on level up at night" alt="moon sprite"/></div>);
       }else if(evolution_details.time_of_day==='day'){
-        reqArray.push(<img src={require(`../images/req_sprites/day.png`)} key="day" title="Evolves on level up during the day" alt="sun sprite"/>);
+        reqArray.push(<div className="req-sprite" key="day"><img src={require(`../images/req_sprites/day.png`)}  title="Evolves on level up during the day" alt="sun sprite"/></div>);
       }
     }
+
+    if(evolution_details.min_happiness!==null && evolution_details.time_of_day===""){
+      reqArray.push(<div className="req-s-sprite" key="happiness"><img src={require(`../images/req_sprites/happiness.png`)} title="Evolves on level up after max happiness" alt={`heart sprite`}/></div>);
+    }
+
     //By Trade
     if(evolution_details.trigger.name === "trade"){
       if(evolution_details.held_item!==null){//By Trade with Item
         var heldItem = evolution_details.held_item.name;
-        reqArray.push(<img src={require(`../images/req_sprites/${heldItem}.png`)} key={heldItem} title={`trade while holding ${heldItem}`} alt={`${heldItem} sprite`}/>);
+        reqArray.push(<div className="req-sprite" key={heldItem}><img src={require(`../images/req_sprites/${heldItem}.png`)} title={`trade while holding ${heldItem}`} alt={`${heldItem} sprite`}/></div>);
       }else{
-        reqArray.push(<img src={require(`../images/req_sprites/trade.png`)} key="trade" title="Evolves when traded" alt="trade sprite"/>);
+        reqArray.push(<div className="req-s-sprite" key="trade"><img src={require(`../images/req_sprites/trade.png`)} title="Evolves when traded" alt="trade sprite"/></div>);
       }
-    }else if(evolution_details.held_item!==null){
-      reqArray.push(<img src={require(`../images/req_sprites/${evolution_details.held_item.name}.png`)} key={evolution_details.held_item.name} title={`level while holding ${evolution_details.held_item.name}`} alt={`${evolution_details.held_item.name} sprite`}/>);
     }
     
     //By Max Beauty
     if(evolution_details.min_beauty!==null){
-      reqArray.push("max beauty");
+      reqArray.push(<div className="req-sprite" key="max-beauty">max beauty</div>);
     }
 
     if(evolution_details.location){
       if(evolution_details.location.name==="eterna-forest"){
-        reqArray.push("Lvl by Moss Rock");
+        reqArray.push(<div className="req-sprite" key="moss-rock"><img src={require(`../images/req_sprites/moss-rock.png`)}  title="Level around moss rock" alt="moss rock sprite"/></div>);
       }else{
-        reqArray.push("Lvl by Ice Rock");
+        reqArray.push(<div className="req-sprite" key="ice-rock"><img src={require(`../images/req_sprites/ice-rock.jpg`)}  title="Level around ice rock" alt="ice rock sprite"/></div>);
       }
     }
 
     if(evolution_details.known_move_type){
-      reqArray.push("Lvl with Fairy Move");
+      reqArray.push(<div className="req-sprite" key="fairy-move"><img src={require(`../images/req_sprites/fairy.png`)}  title="Level while knowing a fairy move" alt="fairy sprite"/></div>);
     }
     return reqArray;
   }

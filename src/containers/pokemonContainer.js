@@ -28,7 +28,7 @@ class PokemonContainer extends Component{
       typeColor: this.mainColor(nextProps.pokeData[0][0].data.types)
     });
     //If the next set of data is loaded, stop spinner
-    if(this.state.generalData.name!=nextProps.pokeData[0][0].data.name){
+    if(this.state.generalData.name!==nextProps.pokeData[0][0].data.name){
       this.props.changeSpinnerState(false);
     }
   }

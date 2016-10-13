@@ -100,13 +100,17 @@ body {
         display: inline-block; }
       body .App .evo-chain .poke-req {
         display: inline-block;
-        vertical-align: top;
-        padding-top: 40px; }
+        vertical-align: top; }
         body .App .evo-chain .poke-req .evolve-level {
-          font-weight: 800; }
+          font-weight: 800;
+          padding-top: 40px; }
           body .App .evo-chain .poke-req .evolve-level .lvl-label {
             font-size: 10px; }
           body .App .evo-chain .poke-req .evolve-level .evolved-label {
             font-size: 16px; }
+        body .App .evo-chain .poke-req .req-sprite {
+          padding-top: 40px; }
+        body .App .evo-chain .poke-req .req-s-sprite {
+          padding-top: 10px; }
 
 /*# sourceMappingURL=App.css.map */
