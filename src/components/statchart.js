@@ -12,7 +12,7 @@ export default class StatChart extends Component{
     });
 
     const mainColor = this.props.typecolor;
-    const hoverColor = '#ffddee';
+    const hoverColor = 'white';
 
     var ctx = document.getElementById("StatChart");
     Chart.defaults.global.legend.display = false;

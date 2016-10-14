@@ -87,16 +87,25 @@ body {
             margin: 0px 5px;
             width: 42px;
             padding: 10px 0px;
+            font-size: 8px;
             text-align: center;
             color: white; }
+            @media only screen and (min-width: 450px) {
+              body .App .stats-data .types-column .type-relation-set .element {
+                width: 42px;
+                padding: 10px 0px;
+                font-size: 10px; } }
           body .App .stats-data .types-column .type-relation-set .label {
             margin: 5px 0px; }
       body .App .stats-data .chart-column {
-        width: 60%;
+        width: 50%;
         display: inline-block;
         box-sizing: border-box;
         border: 3px solid;
         border-right: 0px; }
+        @media only screen and (min-width: 450px) {
+          body .App .stats-data .chart-column {
+            width: 60%; } }
     body .App .evo-chain-container .evo-chain-section-title {
       margin: 0 auto;
       text-align: center;
