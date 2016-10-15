@@ -1,6 +1,6 @@
 import {FETCH_POKEDATA} from '../actions/index';
 
-export default function(state=1, action){
+export default function(state=[], action){
   switch(action.type){
     case FETCH_POKEDATA:
       return [action.payload];

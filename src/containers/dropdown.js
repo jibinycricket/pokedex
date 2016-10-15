@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchPokeData} from '../actions/index';
 import {changeSpinnerState} from '../actions/index';
+
 /*
 --Dropdown Component--
 When the dropdown onChange value changes it sends an action to make two API calls

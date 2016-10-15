@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export const FETCH_POKEDATA = 'FETCH_POKEDATA';
 export const START_SPINNER = 'START_SPINNER';
 
@@ -32,3 +31,5 @@ export function changeSpinnerState(spin){
     payload: spin
   }
 }
+
+

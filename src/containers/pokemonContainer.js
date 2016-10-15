@@ -11,7 +11,6 @@ class PokemonContainer extends Component{
   constructor(props){
     super(props);
     this.state = {
-      foundData: false,
       generalData:{},
       bioData: {},
       evoData: {}
@@ -20,16 +19,18 @@ class PokemonContainer extends Component{
     this.mainColor = this.mainColor.bind(this);
   }
   componentWillReceiveProps(nextProps){
-    this.setState({
-      foundData: true,
-      generalData:nextProps.pokeData[0][0].data,
-      bioData: nextProps.pokeData[0][1][0].data,
-      evoData: nextProps.pokeData[0][1][1].data,
-      typeColor: this.mainColor(nextProps.pokeData[0][0].data.types)
-    });
     //If the next set of data is loaded, stop spinner
-    if(this.state.generalData.name!==nextProps.pokeData[0][0].data.name){
-      this.props.changeSpinnerState(false);
+    if(nextProps.pokeData.length>0){
+      console.log('hello');
+      if(this.state.generalData.name!==nextProps.pokeData[0][0].data.name){
+        this.props.changeSpinnerState(false);
+      }
+      this.setState({
+        generalData:nextProps.pokeData[0][0].data,
+        bioData: nextProps.pokeData[0][1][0].data,
+        evoData: nextProps.pokeData[0][1][1].data,
+        typeColor: this.mainColor(nextProps.pokeData[0][0].data.types)
+      });
     }
   }
   mainColor(types){
@@ -61,13 +62,12 @@ class PokemonContainer extends Component{
     }
   }
   renderBio(){
-    if(this.props.spinner===true){
-      if(this.state.foundData===true){
-        return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px"/>
-      }else{
-        return <img src={require(`../images/pokeballspinner.png`)} width="150px"/>
-      }
-    }else{
+    console.log(this.props.spinner);
+    if(this.props.spinner===null){
+      return <img src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/>
+    }else if(this.props.spinner===true){
+      return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/>
+    }else if(this.props.spinner === false){
       var style={
         backgroundColor:this.state.typeColor
       }
