@@ -763,10 +763,12 @@ class Dropdown extends Component{
 
   render(){
   	return(
-			<select id="dropdown-menu" value={this.state.selected} onChange={this.onSelectChange}>
-				<option value="0" disabled>Select a Pokemon</option>
-				{this.dropdownOptions()}
-			</select>
+  		<div className="dropdown-menu-container">
+				<select id="dropdown-menu" value={this.state.selected} onChange={this.onSelectChange}>
+					<option value="0" disabled>Select a Pokemon</option>
+					{this.dropdownOptions()}
+				</select>
+			</div>
   	)
   }
 }

@@ -64,9 +64,9 @@ class PokemonContainer extends Component{
   renderBio(){
     console.log(this.props.spinner);
     if(this.props.spinner===null){
-      return <img src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/>
+      return <div className="load-spinner"><img src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/></div>
     }else if(this.props.spinner===true){
-      return <img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/>
+      return <div className="load-spinner"><img id="pokemon-spinner" src={require(`../images/pokeballspinner.png`)} width="150px" alt="pokeballspinner"/></div>
     }else if(this.props.spinner === false){
       var style={
         backgroundColor:this.state.typeColor
