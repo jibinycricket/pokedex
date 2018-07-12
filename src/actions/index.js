@@ -4,12 +4,12 @@ export const START_SPINNER = 'START_SPINNER';
 
 export function fetchPokeData(number){
   function getPokeData(number){
-    const url = `http://pokeapi.co/api/v2/pokemon/${number}`;
+    const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
     return axios.get(url);
   }
 
   function getDescriptionData(number){
-    const url = `http://pokeapi.co/api/v2/pokemon-species/${number}/`;
+    const url = `https://pokeapi.co/api/v2/pokemon-species/${number}/`;
     return axios.get(url).then((response)=>{
       return axios.all([response, axios.get(response.data.evolution_chain.url)]);
     });

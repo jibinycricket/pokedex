@@ -31,7 +31,17 @@ export default (props)=>{
       return number;
     }
   }
-
+  function englishFlavorText(){
+    let flavorTexts = props.bioData.flavor_text_entries;
+    let flavorText = '';
+    for( let i = 0; i < flavorTexts.length; i++ ){
+      if(flavorTexts[i].language.name === 'en'){
+        flavorText = flavorTexts[i].flavor_text;
+        break;
+      }
+    }
+    return flavorText;
+  }
   return(
     <div className="bio">
       <div className="img-column">
@@ -40,12 +50,12 @@ export default (props)=>{
       </div>
       <div className="text-column">
         <div className="physical-stats">
-          <BioStat main={props.bioData.genera[0].genus.toUpperCase()} sub="SPECIES"/>
+          <BioStat main={props.bioData.genera[2].genus.toUpperCase()} sub="SPECIES"/>
           <BioStat main={convertHeightToFeet(props.generalData.height)} sub="HEIGHT"/>
           <BioStat main={convertWeightToLbs(props.generalData.weight)} sub="WEIGHT"/>
         </div>
         <div className="fun-fact">
-          {props.bioData.flavor_text_entries[9].flavor_text}
+          {englishFlavorText()}
         </div>
       </div>
     </div>
